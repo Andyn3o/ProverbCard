@@ -81,4 +81,4 @@ Error generating stack: `+o.message+`
 `,Tm=Un.div`
   height: ${9*30}px;
   width: ${16*30}px;
-`;function $m(){const[e,t]=wt.useState(0),[n,r]=wt.useState(0),[l,o]=wt.useState(0),i=()=>{t(e===0?1:0)},u=()=>{const c=Math.floor(Math.random()*100);r(c%pa.length),o(c%ha.length)},s=()=>{i(),u()};return At.jsxs(_m,{children:[At.jsxs(Pm,{onClick:s,children:["State ",e]}),At.jsx(Tm,{children:e===1&&At.jsx(Nm,{$bgUrl:ha[l],children:At.jsx(zm,{children:pa[n]})})})]})}Qo.createRoot(document.getElementById("root")).render(At.jsx(Cn.StrictMode,{children:At.jsx($m,{})}));
+`;function $m(){const[e,t]=wt.useState(0),[n,r]=wt.useState(0),[l,o]=wt.useState(0),i=()=>{t(e===0?1:0)},u=()=>{const c=Math.floor(Math.random()*100);r(c%pa.length),o(c%ha.length)},s=()=>{i(),u()};return At.jsxs(_m,{children:[At.jsx(Pm,{onClick:s,children:e===0?"抽箴言":"返回"}),At.jsx(Tm,{children:e===1&&At.jsx(Nm,{$bgUrl:ha[l],children:At.jsx(zm,{children:pa[n]})})})]})}Qo.createRoot(document.getElementById("root")).render(At.jsx(Cn.StrictMode,{children:At.jsx($m,{})}));
