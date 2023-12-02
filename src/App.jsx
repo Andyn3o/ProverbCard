@@ -102,23 +102,14 @@ function App() {
   
   return (
     <Container>
-      <Button onClick={handleButtonClick}>State {state}</Button>
+      <Button onClick={handleButtonClick}>{state === 0 ? '抽箴言' : '返回'}</Button>
       <CardContainer>
         {state === 1 && (
           <Card $bgUrl={cardBgs[selectedBg]}>
             <ProverbText>{proverbs[selectedProverb]}</ProverbText>
           </Card>
         )}
-      </CardContainer>
-      {/* {state ? (
-        <Card $bgstate>
-      ) : (
-        <Card $bgUrl={cardBgs[selectedBg]}>
-          <ProverbText>{proverbs[selectedProverb]}</ProverbText>
-        </Card>
-      )
-      } */}
-      
+      </CardContainer>  
     </Container>
   )
 }
