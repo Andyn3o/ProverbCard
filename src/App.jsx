@@ -26,7 +26,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-image: url(${bgimg});
+
+  background-image: url(${"https://img.freepik.com/free-psd/merry-christmas-banner-with-colorful-pastel-tones_1361-4460.jpg?w=1380&t=st=1701527019~exp=1701527619~hmac=82c6ad86b3c71cef7d4feebbc2eb3eda705c6f4cba68eee9abd5daed54589654"});
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
