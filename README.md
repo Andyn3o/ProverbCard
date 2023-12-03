@@ -1,8 +1,6 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. 如何儲存用戶資料？/ 還是當下就要截圖？
+2. 把用戶名轉成ascii，配合日期，每天都會抽到一樣的箴言
+3. Turn html's Dom into image and download it.
+4. luancha
+5. lottie animation
+6. 
