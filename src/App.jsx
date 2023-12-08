@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import './animation/animatedCursor.css';
 import html2canvas from 'html2canvas';
+import ReactTyped from "react-typed";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -114,7 +116,6 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-
   @media
   ${(props) => props.theme.device.mobile},
   { 
@@ -216,10 +217,11 @@ function App() {
       {state === 0 && (
         <WordContainer>
           <Title>
-            {`活出你的信仰態度!`}
+            <ReactTyped strings={["活出你的信仰態度"]} typeSpeed={200} onComplete={(self) => {self.cursor.style.display = 'none'}} />
           </Title>
           <Subtitle>
-            {`重新審視生活的喧囂,\n傾聽內心真實的聲音,\n展現你的CAMEGO態度!`}
+            <ReactTyped strings={["重新審視生活的喧囂,\n傾聽內心真實的聲音,\n展現你的CAMEGO態度!"]} typeSpeed={100} startDelay={2200}
+            onComplete={(self) => {self.cursor.style.display = 'none'}}/>
           </Subtitle>
           <StyledTextField type={"text"} onChange={getData} id="usrname" maxLength={20} required placeholder={"請輸入姓名"}/>
         </WordContainer>
