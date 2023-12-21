@@ -61,7 +61,7 @@ const Button = styled.button`
   font-weight: 700;
   padding: 0.25em 1em;
   border-radius: 50px;
-  box-shadow: 0px 4px 12px 0px rgba(163, 180, 203, 0.20);
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   @media
   ${(props) => props.theme.device.mobile},
   { 
@@ -102,13 +102,13 @@ const Card = styled.div`
 const ProverbText = styled.div`
   text-align: center;
   color: #4b3621;
-  font-family: OpenHunnin
-  font-size: 40px;
+  font-family: OpenHunnin;
   @media
   ${(props) => props.theme.device.tablet},
   ${(props) => props.theme.device.desktop},
   { 
     font-size: 40px;
+    font-weight: 600;
   }
   @media
   ${(props) => props.theme.device.mobile}
@@ -194,7 +194,6 @@ const StyledTextField = styled.input`
 function App() {
   const [state, setState] = useState(0);
   const [selectedProverb, setSelectedProverb] = useState(0);
-  // const [selectedBg, setSelectedBg] = useState(0);
   const [data, setData] = useState(null);
 
   const handlePlayClick = () => {
@@ -215,7 +214,6 @@ function App() {
     const current = new Date()
     const num = tmp + current.getDate() + current.getMonth()+1 + current.getFullYear()
     setSelectedProverb(num % proverbs.length)
-    // setSelectedBg(num % cardBgs.length)
   }
   
   const downloadImage = () => {
@@ -256,7 +254,7 @@ function App() {
       {state === 1 && (
         <CardContainer id={'proverbcard'}>
           <Card $bgUrl={proverbCardBackground}>
-            <ProverbText>{proverbs[7]}</ProverbText>
+            <ProverbText>{proverbs[selectedProverb]}</ProverbText>
           </Card>
         </CardContainer>
       )}
