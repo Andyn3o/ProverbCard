@@ -1,8 +1,7 @@
-.typed-cursor {
-    opacity: 1;
-    animation: typedjsBlink 0.7s infinite;
-    -webkit-animation: typedjsBlink 0.7s infinite;
-    animation: typedjsBlink 0.7s infinite;
+.type::after {
+    content: '|';
+    animation: typedjsBlink 1s infinite;
+    -webkit-animation: typedjsBlink 1s infinite;
 }
 
 @keyframes typedjsBlink {

@@ -2,9 +2,13 @@ import styled from 'styled-components'
 import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import { TypeAnimation } from 'react-type-animation';
 import './animation/animatedCursor.css';
 import html2canvas from 'html2canvas';
-import ReactTyped from "react-typed";
+
+import proverbCardBackground from './assets/image/proverbCardBackground.svg';
+import backgroundImage from './assets/image/Background.svg';
+import proverbs from './Proverb.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,18 +16,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-
-const proverbs = [
-  '因為不瞭解，所以必須和　神、和主成為一體。',
-  '若不瞭解，就會死。',
-  '若不瞭解就去做，會搞砸一切。',
-  '攝理史知道千年歷史已經開始，才能一直行動到現在。',
-];
-
 const cardBgs = [
-  'https://images.unsplash.com/photo-1493382051629-7eb03ec93ea2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1559239115-ce3eb7cb87ea?q=80&w=1988&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'proverbCardBackground'
 ];
 
 const Container = styled.form`
@@ -31,18 +25,32 @@ const Container = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-
-  background-image: url(${"https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"});
-  
+  background-image: url(${props => props.$bgUrl});
+  background-position-x: center;
+  background-position-y: -600px;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-size: 2020px 3080px;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
+  background-position-x: center;
+  background-repeat: no-repeat;
   gap: 50px;
+
+  @media
+  ${(props) => props.theme.device.mobile},
+  { 
+    background-position-y: center;
+    background-size: auto;
+  }
+  @media
+  ${(props) => props.theme.device.tablet},
+  ${(props) => props.theme.device.desktop},
+  { 
+    
+    background-position-y: -700px;
+    background-size: auto 3180px;
+  }
 `;
 
 const Button = styled.button`
@@ -65,35 +73,48 @@ const Button = styled.button`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   background-image: url(${props => props.$bgUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   
-  width: 50vw;
-  height: 28.125vw;
-  
   box-sizing: border-box;
-  padding:10px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media
+  ${(props) => props.theme.device.mobile},
+  { 
+    width: 270px;
+    height: 370px;
+    padding: 20px;
+  }
+  @media
+  ${(props) => props.theme.device.tablet},
+  ${(props) => props.theme.device.desktop},
+  { 
+    width: 540px;
+    height: 740px;
+    padding: 40px;
+  }
 `;
-
-const Alias = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  color: black;
-`
 
 const ProverbText = styled.div`
   text-align: center;
-  font-size: 30px;
-  font-weight: 700;
-  text-shadow: 1px 1px 2px black;
-  color: white;
+  color: #4b3621;
+  font-family: OpenHunnin
+  font-size: 40px;
+  @media
+  ${(props) => props.theme.device.tablet},
+  ${(props) => props.theme.device.desktop},
+  { 
+    font-size: 40px;
+  }
+  @media
+  ${(props) => props.theme.device.mobile}
+  { 
+    font-size: 20px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -102,6 +123,7 @@ const CardContainer = styled.div`
 const WordContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   text-align: center;
@@ -116,6 +138,7 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-shadow: rgb(0, 0, 0) 2px 2px 2px;
   @media
   ${(props) => props.theme.device.mobile},
   { 
@@ -127,9 +150,8 @@ const Subtitle = styled.div`
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%;
   word-spacing: 4px;
-  white-space: nowrap;
+  text-shadow: rgb(0, 0, 0) 2px 2px 2px;
   @media
   ${(props) => props.theme.device.mobile},
   { 
@@ -150,7 +172,9 @@ const ButtonContainer = styled.div`
 
 const StyledTextField = styled.input`
   width: 30vw;
-  font-size: 34px;
+  font-family: 'Noto Sans TC', sans-serif;
+  height: 40px;
+  font-size: 20px;
   font-weight: 500;
   color: black;
   background-color: white;
@@ -162,14 +186,15 @@ const StyledTextField = styled.input`
   @media
   ${(props) => props.theme.device.mobile},
   { 
-    font-size: 22px;
+    height: 30px;
+    font-size: 18px;
   }
 `
 
 function App() {
   const [state, setState] = useState(0);
   const [selectedProverb, setSelectedProverb] = useState(0);
-  const [selectedBg, setSelectedBg] = useState(0);
+  // const [selectedBg, setSelectedBg] = useState(0);
   const [data, setData] = useState(null);
 
   const handlePlayClick = () => {
@@ -190,7 +215,7 @@ function App() {
     const current = new Date()
     const num = tmp + current.getDate() + current.getMonth()+1 + current.getFullYear()
     setSelectedProverb(num % proverbs.length)
-    setSelectedBg(num % cardBgs.length)
+    // setSelectedBg(num % cardBgs.length)
   }
   
   const downloadImage = () => {
@@ -212,25 +237,26 @@ function App() {
   }
 
   return (
-    <Container onSubmit={handleButtonClick}>
+    <Container onSubmit={handleButtonClick} $bgUrl={backgroundImage}>
       <GlobalStyle />
       {state === 0 && (
         <WordContainer>
           <Title>
-            <ReactTyped strings={["活出你的信仰態度"]} typeSpeed={200} onComplete={(self) => {self.cursor.style.display = 'none'}} />
+            <TypeAnimation
+            sequence={['與耶穌憶起聖誕', 1000]}
+            cursor={false} speed={{type:'keyStrokeDelayInMs', value: 150}} wrapper="span" className="type"/>
           </Title>
           <Subtitle>
-            <ReactTyped strings={["重新審視生活的喧囂,\n傾聽內心真實的聲音,\n展現你的CAMEGO態度!"]} typeSpeed={100} startDelay={2200}
-            onComplete={(self) => {self.cursor.style.display = 'none'}}/>
+            <TypeAnimation sequence={['今年的聖誕節', 3000 , '與和平之王——耶穌', 3000, '一起慶祝吧！' ]}
+            cursor={true} speed={{type:'keyStrokeDelayInMs', value: 170}} wrapper="span"/>
           </Subtitle>
           <StyledTextField type={"text"} onChange={getData} id="usrname" maxLength={20} required placeholder={"請輸入姓名"}/>
         </WordContainer>
       )}
       {state === 1 && (
         <CardContainer id={'proverbcard'}>
-          <Card $bgUrl={cardBgs[selectedBg]}>
-            <Alias>To:{data}</Alias>
-            <ProverbText>{proverbs[selectedProverb]}</ProverbText>
+          <Card $bgUrl={proverbCardBackground}>
+            <ProverbText>{proverbs[7]}</ProverbText>
           </Card>
         </CardContainer>
       )}

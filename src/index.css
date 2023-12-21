@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "OpenHunnin";
+  src: local("OpenHunnin"), url("./fonts/OpenHunnin.TTF") format("truetype");
+}
 
 a {
   font-weight: 500;
@@ -30,6 +34,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
+  font-family: 'YourFontName', sans-serif;
 }
 
 h1 {
