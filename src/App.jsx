@@ -6,8 +6,8 @@ import { TypeAnimation } from 'react-type-animation';
 import './animation/animatedCursor.css';
 import html2canvas from 'html2canvas';
 
-import proverbCardBackground from './assets/image/proverbCardBackground.svg';
-import backgroundImage from './assets/image/Background.svg';
+import proverbCardBackground from './assets/image/proverbCardBackground.jpg';
+import backgroundImage from './assets/image/Background.jpg';
 import proverbs from './Proverb.jsx';
 
 const GlobalStyle = createGlobalStyle`
@@ -15,10 +15,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: Inter, san-serif;
   }
 `;
-
-const cardBgs = [
-  'proverbCardBackground'
-];
 
 const Container = styled.form`
   display: flex;
@@ -29,7 +25,6 @@ const Container = styled.form`
   background-position-x: center;
   background-position-y: -600px;
   background-repeat: no-repeat;
-  background-size: 2020px 3080px;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -40,8 +35,8 @@ const Container = styled.form`
   @media
   ${(props) => props.theme.device.mobile},
   { 
-    background-position-y: center;
-    background-size: auto;
+    background-position-y:center;
+    background-size: 100vh;
   }
   @media
   ${(props) => props.theme.device.tablet},
@@ -73,7 +68,7 @@ const Button = styled.button`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
   background-image: url(${props => props.$bgUrl});
   background-size: cover;
@@ -103,6 +98,9 @@ const ProverbText = styled.div`
   text-align: center;
   color: #4b3621;
   font-family: OpenHunnin;
+  flex-grow: 9;
+  display: flex;
+  align-items: center;
   @media
   ${(props) => props.theme.device.tablet},
   ${(props) => props.theme.device.desktop},
@@ -116,6 +114,24 @@ const ProverbText = styled.div`
     font-size: 20px;
   }
 `;
+
+const Alias = styled.div`
+  text-shadow:1px 1px 10px #fff, 1px 1px 10px #ccc;
+  color: black;
+  font-family: OpenHunnin
+  font-size: 20px;
+  font-style: italic;
+  text-align: left;
+  flex-grow: 1;
+
+  @media
+  ${(props) => props.theme.device.tablet},
+  ${(props) => props.theme.device.desktop},
+  { 
+    font-size: 30px;
+  }
+
+`
 
 const CardContainer = styled.div`
 `;
@@ -188,6 +204,7 @@ const StyledTextField = styled.input`
   { 
     height: 30px;
     font-size: 18px;
+    width: 60vw;
   }
 `
 
@@ -224,7 +241,7 @@ function App() {
       useCORS: true
     }).then(function (canvas) {
       const link = document.createElement('a');
-      link.download = 'table.png';
+      link.download = 'proverb.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
@@ -248,12 +265,13 @@ function App() {
             <TypeAnimation sequence={['今年的聖誕節', 3000 , '與和平之王——耶穌', 3000, '一起慶祝吧！' ]}
             cursor={true} speed={{type:'keyStrokeDelayInMs', value: 170}} wrapper="span"/>
           </Subtitle>
-          <StyledTextField type={"text"} onChange={getData} id="usrname" maxLength={20} required placeholder={"請輸入姓名"}/>
+          <StyledTextField type={"text"} onChange={getData} id="usrname" maxLength={20} required placeholder={"輸入姓名取得專屬箴言"}/>
         </WordContainer>
       )}
       {state === 1 && (
         <CardContainer id={'proverbcard'}>
           <Card $bgUrl={proverbCardBackground}>
+            <Alias>致:{data}</Alias>
             <ProverbText>{proverbs[selectedProverb]}</ProverbText>
           </Card>
         </CardContainer>
